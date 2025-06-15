@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+        // Add some default candidates
+        candidates.put("Totlee", 0);
+        candidates.put("Gaudell", 0);
+        candidates.put("Gipii", 0);
+
+        while (true) {
+            System.out.println("\n=== Online Voting System ===");
+            System.out.println("1. Vote");
+            System.out.println("2. Admin Login");
+            System.out.println("3. Exit");
+            System.out.print("Choose an option: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // consume newline
+
+            switch (choice){
+ case 1:
+                    vote();
+                    break;
+                case 2:
+                    adminLogin();
+                    break;
+                case 3:
+                    System.out.println("Thank you for using the voting system.");
+                    return;
+                default:
+                    System.out.println("Invalid choice. Try again.");
+            }
+        }
+    }

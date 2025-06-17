@@ -1,0 +1,14 @@
+@GetMapping("/admin")
+public String adminLogin() {
+    return "admin"; // Loads admin.html
+}
+
+@PostMapping("/results")
+public String results(@RequestParam String username, @RequestParam String password, Model model) {
+    if ("admin".equals(username) && "password".equals(password)) {
+        model.addAttribute("results", VoteData.candidates);
+        return "results"; // Loads results.html
+    }
+    model.addAttribute("message", "Invalid credentials");
+    return "admin";
+}

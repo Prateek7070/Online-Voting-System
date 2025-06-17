@@ -1,0 +1,7 @@
+@PostMapping("/submitVote")
+public String submitVote(@RequestParam String voterId, @RequestParam String candidate, Model model) {
+    VoteData.candidates.put(candidate, VoteData.candidates.get(candidate) + 1);
+    VoteData.voters.get(voterId).setHasVoted(true);
+    model.addAttribute("message", "Vote submitted for " + candidate);
+    return "index";
+}

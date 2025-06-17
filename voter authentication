@@ -1,0 +1,47 @@
+import java.util.*;
+
+public class VoterAuthentication {
+
+    // Simulated database of registered voters
+    private static final Set<String> registeredVoters = new HashSet<>(Arrays.asList("voter1", "voter2", "voter3"));
+
+    // To track OTPs for Voter IDs
+    private static final Map<String, String> otpStore = new HashMap<>();
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        System.out.println("=== Voter Authentication System ===");
+        System.out.print("Enter your Voter ID: ");
+        String voterId = scanner.nextLine();
+
+        if (!registeredVoters.contains(voterId)) {
+            System.out.println("❌ Invalid Voter ID. Authentication failed.");
+            return;
+        }
+
+        // Step 1: Generate OTP
+        String otp = generateOTP();
+        otpStore.put(voterId, otp);
+
+        // Simulate sending OTP
+        System.out.println("✅ OTP sent to your registered device (simulation): " + otp);
+
+        // Step 2: Ask for OTP
+        System.out.print("Enter the OTP: ");
+        String userOtp = scanner.nextLine();
+
+        // Step 3: Validate OTP
+        if (otp.equals(userOtp)) {
+            System.out.println("🎉 Authentication successful. You may now proceed to vote.");
+        } else {
+            System.out.println("❌ Invalid OTP. Authentication failed.");
+        }
+    }
+
+    private static String generateOTP() {
+        Random rand = new Random();
+        int otp = 100000 + rand.nextInt(900000); // Generates 6-digit OTP
+        return String.valueOf(otp);
+    }
+}
